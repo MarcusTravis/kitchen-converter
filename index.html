@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kitchen Converter: Cups to Grams, Oven Temps &amp; Pan Sizes</title>
+  <meta name="description" content="A fast, free, ad-free kitchen converter: cups, spoons, grams and ounces, cups to grams for 58 ingredients from USDA data, oven temperatures and pan sizes.">
+  <link rel="canonical" href="https://kitchen-converter-aey.pages.dev/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kitchen Converter">
+  <meta property="og:title" content="Kitchen Converter: Cups to Grams, Oven Temps &amp; Pan Sizes">
+  <meta property="og:description" content="A fast, free, ad-free kitchen converter: cups, spoons, grams and ounces, cups to grams for 58 ingredients from USDA data, oven temperatures and pan sizes.">
+  <meta property="og:url" content="https://kitchen-converter-aey.pages.dev/">
+  <meta name="theme-color" content="#2f6b4f">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css?v=1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Kitchen Converter","url":"https://kitchen-converter-aey.pages.dev/","applicationCategory":"UtilitiesApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2f6b4f"/><path d="M8 12h16l-1.6 11.2A3 3 0 0 1 19.4 26h-6.8a3 3 0 0 1-3-2.8z" fill="#fbf8f3"/><path d="M11 16h10M11.5 20h9" stroke="#2f6b4f" stroke-width="1.6" stroke-linecap="round"/></svg>Kitchen Converter</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="/" aria-current="page">Converter</a>
+        <a href="/#ingredients">Cups to grams</a>
+        <a href="/#temperature">Oven temps</a>
+        <a href="/#pans">Pan sizes</a>
+        <a href="/convert/">Charts</a>
+        <a href="/about/">About & sources</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+    <h1>Kitchen &amp; ingredient converter</h1>
+    <p class="lede">Cups, spoons, grams and ounces, cups to grams for 58 ingredients, oven temperatures and pan sizes. Results update as you type.</p>
+    <ul class="jump">
+      <li><a href="#units">Units</a></li><li><a href="#ingredients">Cups ↔ grams</a></li><li><a href="#temperature">Temperature</a></li><li><a href="#pans">Pan sizes</a></li>
+    </ul>
+
+    <section id="units" class="card" aria-labelledby="units-h">
+      <h2 id="units-h">Volume &amp; weight units</h2>
+      <div class="row three">
+        <div class="field amount"><label for="u-amount">Amount</label><input id="u-amount" type="text" inputmode="decimal" autocomplete="off" value="1"></div>
+        <div class="field"><label for="u-from">From</label><select id="u-from"></select></div>
+        <div class="field"><label for="u-to">To</label><select id="u-to"></select></div>
+      </div>
+      <p><button type="button" class="btn ghost swap" id="u-swap">⇅ Swap units</button></p>
+      <div class="result" aria-live="polite">
+        <div class="big" id="u-result">1 cup = 16 tbsp</div>
+        <div class="sub" id="u-sub"></div>
+        <ul class="chips" id="u-chips" aria-label="Same amount in other units"></ul>
+      </div>
+      <p class="hint">Fractions like 1 1/2 or ¾ work too. Cups and spoons are shown as the nearest kitchen fraction.</p>
+    </section>
+
+    <section id="ingredients" class="card" aria-labelledby="ing-h">
+      <h2 id="ing-h">Ingredient cups ↔ grams</h2>
+      <div class="row two">
+        <div class="field"><label for="i-ing">Ingredient</label><select id="i-ing"></select></div>
+        <div class="field amount"><label for="i-amount">Amount</label><input id="i-amount" type="text" inputmode="decimal" autocomplete="off" value="1"></div>
+      </div>
+      <div class="row two" style="margin-top:.75rem">
+        <div class="field"><label for="i-from">From</label><select id="i-from"></select></div>
+        <div class="field"><label for="i-to">To</label><select id="i-to"></select></div>
+      </div>
+      <p><button type="button" class="btn ghost swap" id="i-swap">⇅ Swap units</button></p>
+      <div class="result" aria-live="polite">
+        <div class="big" id="i-result">1 cup all-purpose flour ≈ 125 g</div>
+        <div class="sub" id="i-sub"></div>
+        <ul class="chips" id="i-chips" aria-label="Same amount in other units"></ul>
+      </div>
+      <p class="hint" id="i-source"></p>
+      <h3>Popular charts</h3>
+      <ul class="link-grid">
+          <li><a href="/convert/1-cup-all-purpose-flour-in-grams/">1 cup all-purpose flour in grams</a></li>
+          <li><a href="/convert/1-cup-granulated-sugar-in-grams/">1 cup granulated sugar in grams</a></li>
+          <li><a href="/convert/1-cup-butter-in-grams/">1 cup butter in grams</a></li>
+          <li><a href="/convert/1-cup-brown-sugar-in-grams/">1 cup brown sugar (packed) in grams</a></li>
+          <li><a href="/convert/1-cup-powdered-sugar-in-grams/">1 cup powdered sugar (unsifted) in grams</a></li>
+          <li><a href="/convert/1-cup-whole-milk-in-grams/">1 cup whole milk in grams</a></li>
+          <li><a href="/convert/1-cup-rolled-oats-in-grams/">1 cup rolled oats in grams</a></li>
+          <li><a href="/convert/1-cup-cocoa-powder-in-grams/">1 cup cocoa powder (unsweetened) in grams</a></li>
+          <li><a href="/convert/1-cup-honey-in-grams/">1 cup honey in grams</a></li>
+          <li><a href="/convert/1-cup-white-rice-in-grams/">1 cup white rice (long-grain, uncooked) in grams</a></li>
+      </ul>
+      <p><a href="/convert/">All ingredient charts →</a></p>
+    </section>
+
+    <section id="temperature" class="card" aria-labelledby="temp-h">
+      <h2 id="temp-h">Oven temperature</h2>
+      <div class="row three">
+        <div class="field amount"><label for="t-f">Fahrenheit (°F)</label><input id="t-f" type="number" inputmode="decimal" step="any" value="350"></div>
+        <div class="field amount"><label for="t-c">Celsius (°C)</label><input id="t-c" type="number" inputmode="decimal" step="any" value="177"></div>
+        <div class="field"><label for="t-gas-pick">Gas Mark</label><select id="t-gas-pick"><option value="">Pick a gas mark…</option></select></div>
+      </div>
+      <div class="result" aria-live="polite"><div class="big" id="t-gas">Gas Mark 4</div><div class="sub">Gas marks are approximate; ovens vary, so an oven thermometer is worth having.</div></div>
+      <h3>Oven temperature guide</h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Oven</th><th scope="col" class="num">°F</th><th scope="col" class="num">°C</th><th scope="col" class="num">Gas</th><th scope="col">Good for</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Very low</th><td class="num">225–275</td><td class="num">105–135</td><td class="num">¼–1</td><td>Meringues, drying, slow braises</td></tr>
+            <tr><th scope="row">Low</th><td class="num">300–325</td><td class="num">150–165</td><td class="num">2–3</td><td>Rich fruit cakes, custards, cheesecake</td></tr>
+            <tr><th scope="row">Moderate</th><td class="num">350–375</td><td class="num">175–190</td><td class="num">4–5</td><td>Most cakes, cookies and casseroles</td></tr>
+            <tr><th scope="row">Moderately hot</th><td class="num">400</td><td class="num">205</td><td class="num">6</td><td>Muffins, roast vegetables</td></tr>
+            <tr><th scope="row">Hot</th><td class="num">425–450</td><td class="num">220–230</td><td class="num">7–8</td><td>Bread, pizza, roasting potatoes</td></tr>
+            <tr><th scope="row">Very hot</th><td class="num">475–500</td><td class="num">245–260</td><td class="num">9–10</td><td>Pizza on a stone, quick high-heat roasting</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hint">Celsius rounded to the nearest 5. For a fan or convection oven, try about 25 °F / 15 °C lower.</p>
+    </section>
+
+    <section id="pans" class="card" aria-labelledby="pans-h">
+      <h2 id="pans-h">Pan size converter</h2>
+      <p>Baking a recipe in a different pan? Enter both pans to see how much to scale the recipe.</p>
+      <form id="pan-form" novalidate>
+        <div class="seg" role="radiogroup" aria-label="Measurement units">
+          <label><input type="radio" name="pan-units" value="in" checked><span>Inches</span></label>
+          <label><input type="radio" name="pan-units" value="cm"><span>Centimeters</span></label>
+        </div>
+        <div class="row two" style="margin-top:.75rem">
+          <fieldset>
+          <legend>Recipe’s pan</legend>
+          <div class="row two">
+            <div class="field"><label for="pa-preset">Common size</label><select id="pa-preset"><option value="">Choose a common pan…</option><option value="round-8">8-inch round</option><option value="round-9" selected>9-inch round</option><option value="round-10">10-inch round</option><option value="square-8">8 × 8 in square</option><option value="square-9">9 × 9 in square</option><option value="rect-11x7">11 × 7 in baking dish</option><option value="rect-9x13">9 × 13 in pan</option><option value="rect-15x10">15 × 10 in jelly roll</option><option value="loaf-8x4">8½ × 4½ in loaf</option><option value="loaf-9x5">9 × 5 in loaf</option><option value="bundt-6">6-cup bundt</option><option value="bundt-10">10-cup bundt</option><option value="bundt-12">12-cup bundt</option></select></div>
+            <div class="field"><label for="pa-shape">Shape</label><select id="pa-shape">
+              <option value="round" selected>Round</option><option value="square">Square</option><option value="rect">Rectangle</option><option value="loaf">Loaf</option><option value="bundt">Bundt / tube</option></select></div>
+          </div>
+          <div class="pan-dims">
+            <div class="field" id="pa-diameter-wrap"><label for="pa-diameter">Diameter <span class="len-unit">in</span></label><input id="pa-diameter" type="number" inputmode="decimal" min="0" step="any" value="9"></div>
+            <div class="field" id="pa-side-wrap"><label for="pa-side">Side <span class="len-unit">in</span></label><input id="pa-side" type="number" inputmode="decimal" min="0" step="any" value="8"></div>
+            <div class="field" id="pa-length-wrap"><label for="pa-length">Length <span class="len-unit">in</span></label><input id="pa-length" type="number" inputmode="decimal" min="0" step="any" value="13"></div>
+            <div class="field" id="pa-width-wrap"><label for="pa-width">Width <span class="len-unit">in</span></label><input id="pa-width" type="number" inputmode="decimal" min="0" step="any" value="9"></div>
+            <div class="field" id="pa-depth-wrap"><label for="pa-depth">Depth <span class="len-unit">in</span></label><input id="pa-depth" type="number" inputmode="decimal" min="0" step="any" value="2"></div>
+            <div class="field" id="pa-cups-wrap"><label for="pa-cups">Capacity (cups)</label><input id="pa-cups" type="number" inputmode="decimal" min="0" step="any" value="10"></div>
+          </div>
+        </fieldset>
+          <fieldset>
+          <legend>Your pan</legend>
+          <div class="row two">
+            <div class="field"><label for="pb-preset">Common size</label><select id="pb-preset"><option value="">Choose a common pan…</option><option value="round-8">8-inch round</option><option value="round-9">9-inch round</option><option value="round-10">10-inch round</option><option value="square-8">8 × 8 in square</option><option value="square-9">9 × 9 in square</option><option value="rect-11x7">11 × 7 in baking dish</option><option value="rect-9x13" selected>9 × 13 in pan</option><option value="rect-15x10">15 × 10 in jelly roll</option><option value="loaf-8x4">8½ × 4½ in loaf</option><option value="loaf-9x5">9 × 5 in loaf</option><option value="bundt-6">6-cup bundt</option><option value="bundt-10">10-cup bundt</option><option value="bundt-12">12-cup bundt</option></select></div>
+            <div class="field"><label for="pb-shape">Shape</label><select id="pb-shape">
+              <option value="round">Round</option><option value="square">Square</option><option value="rect" selected>Rectangle</option><option value="loaf">Loaf</option><option value="bundt">Bundt / tube</option></select></div>
+          </div>
+          <div class="pan-dims">
+            <div class="field" id="pb-diameter-wrap"><label for="pb-diameter">Diameter <span class="len-unit">in</span></label><input id="pb-diameter" type="number" inputmode="decimal" min="0" step="any" value="9"></div>
+            <div class="field" id="pb-side-wrap"><label for="pb-side">Side <span class="len-unit">in</span></label><input id="pb-side" type="number" inputmode="decimal" min="0" step="any" value="8"></div>
+            <div class="field" id="pb-length-wrap"><label for="pb-length">Length <span class="len-unit">in</span></label><input id="pb-length" type="number" inputmode="decimal" min="0" step="any" value="13"></div>
+            <div class="field" id="pb-width-wrap"><label for="pb-width">Width <span class="len-unit">in</span></label><input id="pb-width" type="number" inputmode="decimal" min="0" step="any" value="9"></div>
+            <div class="field" id="pb-depth-wrap"><label for="pb-depth">Depth <span class="len-unit">in</span></label><input id="pb-depth" type="number" inputmode="decimal" min="0" step="any" value="2"></div>
+            <div class="field" id="pb-cups-wrap"><label for="pb-cups">Capacity (cups)</label><input id="pb-cups" type="number" inputmode="decimal" min="0" step="any" value="10"></div>
+          </div>
+        </fieldset>
+        </div>
+        <div class="field" style="margin-top:.75rem;max-width:22rem"><label for="p-basis">Compare by</label>
+          <select id="p-basis"><option value="area">Area (keep the same batter depth)</option><option value="volume">Volume (fill to the same level)</option></select></div>
+      </form>
+      <div class="result" aria-live="polite"><div class="big" id="p-result">Multiply the recipe by 1.84</div><div class="sub" id="p-sub"></div></div>
+      <p class="hint">Bundt and tube pans are compared by capacity. To find one, fill the pan with water a cup at a time.</p>
+    </section>
+    <script type="application/json" id="ingredient-data">{"ingredients":[{"slug":"all-purpose-flour","name":"All-purpose flour","group":"Flours & starches","gramsPerCup":125,"fdcId":168936,"usdaPortion":"1 cup = 125 g"},{"slug":"bread-flour","name":"Bread flour","group":"Flours & starches","gramsPerCup":137,"fdcId":168896,"usdaPortion":"1 cup = 137 g"},{"slug":"cake-flour","name":"Cake flour","group":"Flours & starches","gramsPerCup":137,"fdcId":169723,"usdaPortion":"1 cup unsifted, dipped = 137 g"},{"slug":"whole-wheat-flour","name":"Whole wheat flour","group":"Flours & starches","gramsPerCup":120,"fdcId":168893,"usdaPortion":"1 cup = 120 g"},{"slug":"self-rising-flour","name":"Self-rising flour","group":"Flours & starches","gramsPerCup":125,"fdcId":168895,"usdaPortion":"1 cup = 125 g"},{"slug":"rye-flour","name":"Rye flour (medium)","group":"Flours & starches","gramsPerCup":102,"fdcId":168886,"usdaPortion":"1 cup = 102 g"},{"slug":"rice-flour","name":"White rice flour","group":"Flours & starches","gramsPerCup":158,"fdcId":169714,"usdaPortion":"1 cup = 158 g"},{"slug":"cornstarch","name":"Cornstarch","group":"Flours & starches","gramsPerCup":128,"fdcId":169698,"usdaPortion":"1 cup = 128 g"},{"slug":"cornmeal","name":"Cornmeal (yellow, degermed)","group":"Flours & starches","gramsPerCup":157,"fdcId":168867,"usdaPortion":"1 cup = 157 g"},{"slug":"masa-harina","name":"Masa harina","group":"Flours & starches","gramsPerCup":114,"fdcId":169694,"usdaPortion":"1 cup = 114 g"},{"slug":"granulated-sugar","name":"Granulated sugar","group":"Sugars & syrups","gramsPerCup":200,"fdcId":169655,"usdaPortion":"1 cup = 200 g"},{"slug":"brown-sugar","name":"Brown sugar (packed)","group":"Sugars & syrups","gramsPerCup":220,"fdcId":168833,"usdaPortion":"1 cup packed = 220 g"},{"slug":"powdered-sugar","name":"Powdered sugar (unsifted)","group":"Sugars & syrups","gramsPerCup":120,"fdcId":169656,"usdaPortion":"1 cup unsifted = 120 g"},{"slug":"turbinado-sugar","name":"Turbinado (raw) sugar","group":"Sugars & syrups","gramsPerCup":202,"fdcId":170674,"usdaPortion":"1 cup = 202 g"},{"slug":"honey","name":"Honey","group":"Sugars & syrups","gramsPerCup":339,"fdcId":169640,"usdaPortion":"1 cup = 339 g"},{"slug":"maple-syrup","name":"Maple syrup","group":"Sugars & syrups","gramsPerCup":315,"fdcId":169661,"usdaPortion":"1 cup = 315 g"},{"slug":"molasses","name":"Molasses","group":"Sugars & syrups","gramsPerCup":337,"fdcId":168820,"usdaPortion":"1 cup = 337 g"},{"slug":"corn-syrup","name":"Light corn syrup","group":"Sugars & syrups","gramsPerCup":341,"fdcId":168837,"usdaPortion":"1 cup = 341 g"},{"slug":"butter","name":"Butter","group":"Fats & oils","gramsPerCup":227,"fdcId":173430,"usdaPortion":"1 cup = 227 g"},{"slug":"shortening","name":"Vegetable shortening","group":"Fats & oils","gramsPerCup":205,"fdcId":171011,"usdaPortion":"1 cup = 205 g"},{"slug":"coconut-oil","name":"Coconut oil","group":"Fats & oils","gramsPerCup":218,"fdcId":171412,"usdaPortion":"1 cup = 218 g"},{"slug":"olive-oil","name":"Olive oil","group":"Fats & oils","gramsPerCup":216,"fdcId":171413,"usdaPortion":"1 cup = 216 g"},{"slug":"vegetable-oil","name":"Vegetable (canola) oil","group":"Fats & oils","gramsPerCup":218,"fdcId":172336,"usdaPortion":"1 cup = 218 g"},{"slug":"peanut-butter","name":"Peanut butter (smooth)","group":"Fats & oils","gramsPerCup":258,"fdcId":174266,"usdaPortion":"1 cup = 258 g"},{"slug":"water","name":"Water","group":"Liquids & dairy","gramsPerCup":237,"fdcId":173647,"usdaPortion":"1 serving 8 fl oz = 237 g"},{"slug":"whole-milk","name":"Whole milk","group":"Liquids & dairy","gramsPerCup":244,"fdcId":171265,"usdaPortion":"1 cup = 244 g"},{"slug":"buttermilk","name":"Buttermilk","group":"Liquids & dairy","gramsPerCup":245,"fdcId":170874,"usdaPortion":"1 cup = 245 g"},{"slug":"heavy-cream","name":"Heavy cream","group":"Liquids & dairy","gramsPerCup":238,"fdcId":170859,"usdaPortion":"1 cup, fluid (yields 2 cups whipped) = 238 g"},{"slug":"sour-cream","name":"Sour cream","group":"Liquids & dairy","gramsPerCup":230,"fdcId":171257,"usdaPortion":"1 cup = 230 g"},{"slug":"plain-yogurt","name":"Plain yogurt","group":"Liquids & dairy","gramsPerCup":245,"fdcId":171284,"usdaPortion":"1 cup (8 fl oz) = 245 g"},{"slug":"cream-cheese","name":"Cream cheese","group":"Liquids & dairy","gramsPerCup":232,"fdcId":173418,"usdaPortion":"1 cup = 232 g"},{"slug":"sweetened-condensed-milk","name":"Sweetened condensed milk","group":"Liquids & dairy","gramsPerCup":306,"fdcId":171275,"usdaPortion":"1 cup = 306 g"},{"slug":"eggs","name":"Eggs (whole, beaten)","group":"Liquids & dairy","gramsPerCup":243,"fdcId":171287,"usdaPortion":"1 cup (4.86 large eggs) = 243 g"},{"slug":"vanilla-extract","name":"Vanilla extract","group":"Liquids & dairy","gramsPerCup":208,"fdcId":173471,"usdaPortion":"1 cup = 208 g"},{"slug":"parmesan","name":"Parmesan (grated)","group":"Liquids & dairy","gramsPerCup":100,"fdcId":171247,"usdaPortion":"1 cup = 100 g"},{"slug":"shredded-mozzarella","name":"Mozzarella (shredded)","group":"Liquids & dairy","gramsPerCup":112,"fdcId":170845,"usdaPortion":"1 cup, shredded = 112 g"},{"slug":"nonfat-dry-milk","name":"Nonfat dry milk powder","group":"Liquids & dairy","gramsPerCup":120,"fdcId":170877,"usdaPortion":"0.25 cup = 30 g"},{"slug":"white-rice","name":"White rice (long-grain, uncooked)","group":"Grains & legumes","gramsPerCup":185,"fdcId":169756,"usdaPortion":"1 cup = 185 g"},{"slug":"brown-rice","name":"Brown rice (uncooked)","group":"Grains & legumes","gramsPerCup":185,"fdcId":169703,"usdaPortion":"1 cup = 185 g"},{"slug":"rolled-oats","name":"Rolled oats","group":"Grains & legumes","gramsPerCup":81,"fdcId":173904,"usdaPortion":"1 cup = 81 g"},{"slug":"quinoa","name":"Quinoa (uncooked)","group":"Grains & legumes","gramsPerCup":170,"fdcId":168874,"usdaPortion":"1 cup = 170 g"},{"slug":"couscous","name":"Couscous (dry)","group":"Grains & legumes","gramsPerCup":173,"fdcId":169699,"usdaPortion":"1 cup = 173 g"},{"slug":"lentils","name":"Lentils (dry)","group":"Grains & legumes","gramsPerCup":192,"fdcId":172420,"usdaPortion":"1 cup = 192 g"},{"slug":"cocoa-powder","name":"Cocoa powder (unsweetened)","group":"Baking extras","gramsPerCup":86,"fdcId":169593,"usdaPortion":"1 cup = 86 g"},{"slug":"table-salt","name":"Table salt","group":"Baking extras","gramsPerCup":292,"fdcId":173468,"usdaPortion":"1 cup = 292 g"},{"slug":"baking-soda","name":"Baking soda","group":"Baking extras","gramsPerCup":220.8,"fdcId":175040,"usdaPortion":"1 tsp = 4.6 g"},{"slug":"baking-powder","name":"Baking powder","group":"Baking extras","gramsPerCup":220.8,"fdcId":172803,"usdaPortion":"1 tsp = 4.6 g"},{"slug":"ground-cinnamon","name":"Ground cinnamon","group":"Baking extras","gramsPerCup":124.8,"fdcId":171320,"usdaPortion":"1 tbsp = 7.8 g"},{"slug":"chocolate-chips","name":"Chocolate chips (semisweet)","group":"Baking extras","gramsPerCup":168,"fdcId":167976,"usdaPortion":"1 cup chips (6 oz package) = 168 g"},{"slug":"shredded-coconut","name":"Shredded coconut (sweetened)","group":"Baking extras","gramsPerCup":93,"fdcId":168586,"usdaPortion":"1 cup, shredded = 93 g"},{"slug":"raisins","name":"Raisins","group":"Nuts, seeds & fruit","gramsPerCup":145,"fdcId":168165,"usdaPortion":"1 cup (not packed) = 145 g"},{"slug":"almonds","name":"Almonds (whole)","group":"Nuts, seeds & fruit","gramsPerCup":143,"fdcId":170567,"usdaPortion":"1 cup, whole = 143 g"},{"slug":"sliced-almonds","name":"Almonds (sliced)","group":"Nuts, seeds & fruit","gramsPerCup":92,"fdcId":170567,"usdaPortion":"1 cup, sliced = 92 g"},{"slug":"walnuts","name":"Walnuts (chopped)","group":"Nuts, seeds & fruit","gramsPerCup":117,"fdcId":170187,"usdaPortion":"1 cup, chopped = 117 g"},{"slug":"pecans","name":"Pecans (chopped)","group":"Nuts, seeds & fruit","gramsPerCup":109,"fdcId":170182,"usdaPortion":"1 cup, chopped = 109 g"},{"slug":"peanuts","name":"Peanuts","group":"Nuts, seeds & fruit","gramsPerCup":146,"fdcId":172430,"usdaPortion":"1 cup = 146 g"},{"slug":"sesame-seeds","name":"Sesame seeds","group":"Nuts, seeds & fruit","gramsPerCup":144,"fdcId":170150,"usdaPortion":"1 cup = 144 g"},{"slug":"ground-flaxseed","name":"Ground flaxseed","group":"Nuts, seeds & fruit","gramsPerCup":112,"fdcId":169414,"usdaPortion":"1 tbsp, ground = 7 g"}]}</script>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="support"><a href="https://ko-fi.com/marcustravis" rel="noopener">Free and ad-free. If this site helped you, buy me a coffee →</a></p>
+      <p>Ingredient weights come from <a href="/about/">USDA FoodData Central</a> and are approximate. US customary cups and spoons.</p>
+    </div>
+  </footer>
+  <script src="/assets/convert.js?v=1"></script>
+  <script src="/assets/app.js?v=1"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ae14af8fb44d49a1ac852db7819661e8"}'></script>
+</body>
+</html>

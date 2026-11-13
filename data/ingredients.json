@@ -1,0 +1,528 @@
+{
+ "source": "USDA FoodData Central, SR Legacy (April 2018 release), CC0 1.0. https://fdc.nal.usda.gov/",
+ "note": "gramsPerCup is derived from the listed USDA household portion. 1 US cup = 236.588 mL.",
+ "ingredients": [
+  {
+   "slug": "all-purpose-flour",
+   "name": "All-purpose flour",
+   "group": "Flours & starches",
+   "gramsPerCup": 125,
+   "fdcId": 168936,
+   "fdcDescription": "Wheat flour, white, all-purpose, enriched, unbleached",
+   "usdaPortion": "1 cup = 125 g"
+  },
+  {
+   "slug": "bread-flour",
+   "name": "Bread flour",
+   "group": "Flours & starches",
+   "gramsPerCup": 137,
+   "fdcId": 168896,
+   "fdcDescription": "Wheat flour, white, bread, enriched",
+   "usdaPortion": "1 cup = 137 g"
+  },
+  {
+   "slug": "cake-flour",
+   "name": "Cake flour",
+   "group": "Flours & starches",
+   "gramsPerCup": 137,
+   "fdcId": 169723,
+   "fdcDescription": "Wheat flour, white, cake, enriched",
+   "usdaPortion": "1 cup unsifted, dipped = 137 g"
+  },
+  {
+   "slug": "whole-wheat-flour",
+   "name": "Whole wheat flour",
+   "group": "Flours & starches",
+   "gramsPerCup": 120,
+   "fdcId": 168893,
+   "fdcDescription": "Wheat flour, whole-grain (Includes foods for USDA's Food Distribution Program)",
+   "usdaPortion": "1 cup = 120 g"
+  },
+  {
+   "slug": "self-rising-flour",
+   "name": "Self-rising flour",
+   "group": "Flours & starches",
+   "gramsPerCup": 125,
+   "fdcId": 168895,
+   "fdcDescription": "Wheat flour, white, all-purpose, self-rising, enriched",
+   "usdaPortion": "1 cup = 125 g"
+  },
+  {
+   "slug": "rye-flour",
+   "name": "Rye flour (medium)",
+   "group": "Flours & starches",
+   "gramsPerCup": 102,
+   "fdcId": 168886,
+   "fdcDescription": "Rye flour, medium",
+   "usdaPortion": "1 cup = 102 g"
+  },
+  {
+   "slug": "rice-flour",
+   "name": "White rice flour",
+   "group": "Flours & starches",
+   "gramsPerCup": 158,
+   "fdcId": 169714,
+   "fdcDescription": "Rice flour, white, unenriched",
+   "usdaPortion": "1 cup = 158 g"
+  },
+  {
+   "slug": "cornstarch",
+   "name": "Cornstarch",
+   "group": "Flours & starches",
+   "gramsPerCup": 128,
+   "fdcId": 169698,
+   "fdcDescription": "Cornstarch",
+   "usdaPortion": "1 cup = 128 g"
+  },
+  {
+   "slug": "cornmeal",
+   "name": "Cornmeal (yellow, degermed)",
+   "group": "Flours & starches",
+   "gramsPerCup": 157,
+   "fdcId": 168867,
+   "fdcDescription": "Cornmeal, degermed, enriched, yellow",
+   "usdaPortion": "1 cup = 157 g"
+  },
+  {
+   "slug": "masa-harina",
+   "name": "Masa harina",
+   "group": "Flours & starches",
+   "gramsPerCup": 114,
+   "fdcId": 169694,
+   "fdcDescription": "Corn flour, masa, enriched, white",
+   "usdaPortion": "1 cup = 114 g"
+  },
+  {
+   "slug": "granulated-sugar",
+   "name": "Granulated sugar",
+   "group": "Sugars & syrups",
+   "gramsPerCup": 200,
+   "fdcId": 169655,
+   "fdcDescription": "Sugars, granulated",
+   "usdaPortion": "1 cup = 200 g"
+  },
+  {
+   "slug": "brown-sugar",
+   "name": "Brown sugar (packed)",
+   "group": "Sugars & syrups",
+   "gramsPerCup": 220,
+   "fdcId": 168833,
+   "fdcDescription": "Sugars, brown",
+   "usdaPortion": "1 cup packed = 220 g"
+  },
+  {
+   "slug": "powdered-sugar",
+   "name": "Powdered sugar (unsifted)",
+   "group": "Sugars & syrups",
+   "gramsPerCup": 120,
+   "fdcId": 169656,
+   "fdcDescription": "Sugars, powdered",
+   "usdaPortion": "1 cup unsifted = 120 g"
+  },
+  {
+   "slug": "turbinado-sugar",
+   "name": "Turbinado (raw) sugar",
+   "group": "Sugars & syrups",
+   "gramsPerCup": 202,
+   "fdcId": 170674,
+   "fdcDescription": "Sugar, turbinado",
+   "usdaPortion": "1 cup = 202 g"
+  },
+  {
+   "slug": "honey",
+   "name": "Honey",
+   "group": "Sugars & syrups",
+   "gramsPerCup": 339,
+   "fdcId": 169640,
+   "fdcDescription": "Honey",
+   "usdaPortion": "1 cup = 339 g"
+  },
+  {
+   "slug": "maple-syrup",
+   "name": "Maple syrup",
+   "group": "Sugars & syrups",
+   "gramsPerCup": 315,
+   "fdcId": 169661,
+   "fdcDescription": "Syrups, maple",
+   "usdaPortion": "1 cup = 315 g"
+  },
+  {
+   "slug": "molasses",
+   "name": "Molasses",
+   "group": "Sugars & syrups",
+   "gramsPerCup": 337,
+   "fdcId": 168820,
+   "fdcDescription": "Molasses",
+   "usdaPortion": "1 cup = 337 g"
+  },
+  {
+   "slug": "corn-syrup",
+   "name": "Light corn syrup",
+   "group": "Sugars & syrups",
+   "gramsPerCup": 341,
+   "fdcId": 168837,
+   "fdcDescription": "Syrups, corn, light",
+   "usdaPortion": "1 cup = 341 g"
+  },
+  {
+   "slug": "butter",
+   "name": "Butter",
+   "group": "Fats & oils",
+   "gramsPerCup": 227,
+   "fdcId": 173430,
+   "fdcDescription": "Butter, without salt",
+   "usdaPortion": "1 cup = 227 g"
+  },
+  {
+   "slug": "shortening",
+   "name": "Vegetable shortening",
+   "group": "Fats & oils",
+   "gramsPerCup": 205,
+   "fdcId": 171011,
+   "fdcDescription": "Shortening, household, soybean (partially hydrogenated)-cottonseed (partially hydrogenated)",
+   "usdaPortion": "1 cup = 205 g"
+  },
+  {
+   "slug": "coconut-oil",
+   "name": "Coconut oil",
+   "group": "Fats & oils",
+   "gramsPerCup": 218,
+   "fdcId": 171412,
+   "fdcDescription": "Oil, coconut",
+   "usdaPortion": "1 cup = 218 g"
+  },
+  {
+   "slug": "olive-oil",
+   "name": "Olive oil",
+   "group": "Fats & oils",
+   "gramsPerCup": 216,
+   "fdcId": 171413,
+   "fdcDescription": "Oil, olive, salad or cooking",
+   "usdaPortion": "1 cup = 216 g"
+  },
+  {
+   "slug": "vegetable-oil",
+   "name": "Vegetable (canola) oil",
+   "group": "Fats & oils",
+   "gramsPerCup": 218,
+   "fdcId": 172336,
+   "fdcDescription": "Oil, canola",
+   "usdaPortion": "1 cup = 218 g"
+  },
+  {
+   "slug": "peanut-butter",
+   "name": "Peanut butter (smooth)",
+   "group": "Fats & oils",
+   "gramsPerCup": 258,
+   "fdcId": 174266,
+   "fdcDescription": "Peanut butter, smooth style, with salt (Includes foods for USDA's Food Distribution Program)",
+   "usdaPortion": "1 cup = 258 g"
+  },
+  {
+   "slug": "water",
+   "name": "Water",
+   "group": "Liquids & dairy",
+   "gramsPerCup": 237,
+   "fdcId": 173647,
+   "fdcDescription": "Beverages, water, tap, drinking",
+   "usdaPortion": "1 serving 8 fl oz = 237 g"
+  },
+  {
+   "slug": "whole-milk",
+   "name": "Whole milk",
+   "group": "Liquids & dairy",
+   "gramsPerCup": 244,
+   "fdcId": 171265,
+   "fdcDescription": "Milk, whole, 3.25% milkfat, with added vitamin D",
+   "usdaPortion": "1 cup = 244 g"
+  },
+  {
+   "slug": "buttermilk",
+   "name": "Buttermilk",
+   "group": "Liquids & dairy",
+   "gramsPerCup": 245,
+   "fdcId": 170874,
+   "fdcDescription": "Milk, buttermilk, fluid, cultured, lowfat",
+   "usdaPortion": "1 cup = 245 g"
+  },
+  {
+   "slug": "heavy-cream",
+   "name": "Heavy cream",
+   "group": "Liquids & dairy",
+   "gramsPerCup": 238,
+   "fdcId": 170859,
+   "fdcDescription": "Cream, fluid, heavy whipping",
+   "usdaPortion": "1 cup, fluid (yields 2 cups whipped) = 238 g"
+  },
+  {
+   "slug": "sour-cream",
+   "name": "Sour cream",
+   "group": "Liquids & dairy",
+   "gramsPerCup": 230,
+   "fdcId": 171257,
+   "fdcDescription": "Cream, sour, cultured",
+   "usdaPortion": "1 cup = 230 g"
+  },
+  {
+   "slug": "plain-yogurt",
+   "name": "Plain yogurt",
+   "group": "Liquids & dairy",
+   "gramsPerCup": 245,
+   "fdcId": 171284,
+   "fdcDescription": "Yogurt, plain, whole milk",
+   "usdaPortion": "1 cup (8 fl oz) = 245 g"
+  },
+  {
+   "slug": "cream-cheese",
+   "name": "Cream cheese",
+   "group": "Liquids & dairy",
+   "gramsPerCup": 232,
+   "fdcId": 173418,
+   "fdcDescription": "Cheese, cream",
+   "usdaPortion": "1 cup = 232 g"
+  },
+  {
+   "slug": "sweetened-condensed-milk",
+   "name": "Sweetened condensed milk",
+   "group": "Liquids & dairy",
+   "gramsPerCup": 306,
+   "fdcId": 171275,
+   "fdcDescription": "Milk, canned, condensed, sweetened",
+   "usdaPortion": "1 cup = 306 g"
+  },
+  {
+   "slug": "eggs",
+   "name": "Eggs (whole, beaten)",
+   "group": "Liquids & dairy",
+   "gramsPerCup": 243,
+   "fdcId": 171287,
+   "fdcDescription": "Egg, whole, raw, fresh",
+   "usdaPortion": "1 cup (4.86 large eggs) = 243 g"
+  },
+  {
+   "slug": "vanilla-extract",
+   "name": "Vanilla extract",
+   "group": "Liquids & dairy",
+   "gramsPerCup": 208,
+   "fdcId": 173471,
+   "fdcDescription": "Vanilla extract",
+   "usdaPortion": "1 cup = 208 g"
+  },
+  {
+   "slug": "parmesan",
+   "name": "Parmesan (grated)",
+   "group": "Liquids & dairy",
+   "gramsPerCup": 100,
+   "fdcId": 171247,
+   "fdcDescription": "Cheese, parmesan, grated",
+   "usdaPortion": "1 cup = 100 g"
+  },
+  {
+   "slug": "shredded-mozzarella",
+   "name": "Mozzarella (shredded)",
+   "group": "Liquids & dairy",
+   "gramsPerCup": 112,
+   "fdcId": 170845,
+   "fdcDescription": "Cheese, mozzarella, whole milk",
+   "usdaPortion": "1 cup, shredded = 112 g"
+  },
+  {
+   "slug": "nonfat-dry-milk",
+   "name": "Nonfat dry milk powder",
+   "group": "Liquids & dairy",
+   "gramsPerCup": 120,
+   "fdcId": 170877,
+   "fdcDescription": "Milk, dry, nonfat, regular, without added vitamin A and vitamin D",
+   "usdaPortion": "0.25 cup = 30 g"
+  },
+  {
+   "slug": "white-rice",
+   "name": "White rice (long-grain, uncooked)",
+   "group": "Grains & legumes",
+   "gramsPerCup": 185,
+   "fdcId": 169756,
+   "fdcDescription": "Rice, white, long-grain, regular, raw, unenriched",
+   "usdaPortion": "1 cup = 185 g"
+  },
+  {
+   "slug": "brown-rice",
+   "name": "Brown rice (uncooked)",
+   "group": "Grains & legumes",
+   "gramsPerCup": 185,
+   "fdcId": 169703,
+   "fdcDescription": "Rice, brown, long-grain, raw (Includes foods for USDA's Food Distribution Program)",
+   "usdaPortion": "1 cup = 185 g"
+  },
+  {
+   "slug": "rolled-oats",
+   "name": "Rolled oats",
+   "group": "Grains & legumes",
+   "gramsPerCup": 81,
+   "fdcId": 173904,
+   "fdcDescription": "Cereals, oats, regular and quick, not fortified, dry",
+   "usdaPortion": "1 cup = 81 g"
+  },
+  {
+   "slug": "quinoa",
+   "name": "Quinoa (uncooked)",
+   "group": "Grains & legumes",
+   "gramsPerCup": 170,
+   "fdcId": 168874,
+   "fdcDescription": "Quinoa, uncooked",
+   "usdaPortion": "1 cup = 170 g"
+  },
+  {
+   "slug": "couscous",
+   "name": "Couscous (dry)",
+   "group": "Grains & legumes",
+   "gramsPerCup": 173,
+   "fdcId": 169699,
+   "fdcDescription": "Couscous, dry",
+   "usdaPortion": "1 cup = 173 g"
+  },
+  {
+   "slug": "lentils",
+   "name": "Lentils (dry)",
+   "group": "Grains & legumes",
+   "gramsPerCup": 192,
+   "fdcId": 172420,
+   "fdcDescription": "Lentils, raw",
+   "usdaPortion": "1 cup = 192 g"
+  },
+  {
+   "slug": "cocoa-powder",
+   "name": "Cocoa powder (unsweetened)",
+   "group": "Baking extras",
+   "gramsPerCup": 86,
+   "fdcId": 169593,
+   "fdcDescription": "Cocoa, dry powder, unsweetened",
+   "usdaPortion": "1 cup = 86 g"
+  },
+  {
+   "slug": "table-salt",
+   "name": "Table salt",
+   "group": "Baking extras",
+   "gramsPerCup": 292,
+   "fdcId": 173468,
+   "fdcDescription": "Salt, table",
+   "usdaPortion": "1 cup = 292 g"
+  },
+  {
+   "slug": "baking-soda",
+   "name": "Baking soda",
+   "group": "Baking extras",
+   "gramsPerCup": 220.8,
+   "fdcId": 175040,
+   "fdcDescription": "Leavening agents, baking soda",
+   "usdaPortion": "1 tsp = 4.6 g"
+  },
+  {
+   "slug": "baking-powder",
+   "name": "Baking powder",
+   "group": "Baking extras",
+   "gramsPerCup": 220.8,
+   "fdcId": 172803,
+   "fdcDescription": "Leavening agents, baking powder, double-acting, sodium aluminum sulfate",
+   "usdaPortion": "1 tsp = 4.6 g"
+  },
+  {
+   "slug": "ground-cinnamon",
+   "name": "Ground cinnamon",
+   "group": "Baking extras",
+   "gramsPerCup": 124.8,
+   "fdcId": 171320,
+   "fdcDescription": "Spices, cinnamon, ground",
+   "usdaPortion": "1 tbsp = 7.8 g"
+  },
+  {
+   "slug": "chocolate-chips",
+   "name": "Chocolate chips (semisweet)",
+   "group": "Baking extras",
+   "gramsPerCup": 168,
+   "fdcId": 167976,
+   "fdcDescription": "Candies, semisweet chocolate",
+   "usdaPortion": "1 cup chips (6 oz package) = 168 g"
+  },
+  {
+   "slug": "shredded-coconut",
+   "name": "Shredded coconut (sweetened)",
+   "group": "Baking extras",
+   "gramsPerCup": 93,
+   "fdcId": 168586,
+   "fdcDescription": "Nuts, coconut meat, dried (desiccated), sweetened, shredded",
+   "usdaPortion": "1 cup, shredded = 93 g"
+  },
+  {
+   "slug": "raisins",
+   "name": "Raisins",
+   "group": "Nuts, seeds & fruit",
+   "gramsPerCup": 145,
+   "fdcId": 168165,
+   "fdcDescription": "Raisins, dark, seedless (Includes foods for USDA's Food Distribution Program)",
+   "usdaPortion": "1 cup (not packed) = 145 g"
+  },
+  {
+   "slug": "almonds",
+   "name": "Almonds (whole)",
+   "group": "Nuts, seeds & fruit",
+   "gramsPerCup": 143,
+   "fdcId": 170567,
+   "fdcDescription": "Nuts, almonds",
+   "usdaPortion": "1 cup, whole = 143 g"
+  },
+  {
+   "slug": "sliced-almonds",
+   "name": "Almonds (sliced)",
+   "group": "Nuts, seeds & fruit",
+   "gramsPerCup": 92,
+   "fdcId": 170567,
+   "fdcDescription": "Nuts, almonds",
+   "usdaPortion": "1 cup, sliced = 92 g"
+  },
+  {
+   "slug": "walnuts",
+   "name": "Walnuts (chopped)",
+   "group": "Nuts, seeds & fruit",
+   "gramsPerCup": 117,
+   "fdcId": 170187,
+   "fdcDescription": "Nuts, walnuts, english",
+   "usdaPortion": "1 cup, chopped = 117 g"
+  },
+  {
+   "slug": "pecans",
+   "name": "Pecans (chopped)",
+   "group": "Nuts, seeds & fruit",
+   "gramsPerCup": 109,
+   "fdcId": 170182,
+   "fdcDescription": "Nuts, pecans",
+   "usdaPortion": "1 cup, chopped = 109 g"
+  },
+  {
+   "slug": "peanuts",
+   "name": "Peanuts",
+   "group": "Nuts, seeds & fruit",
+   "gramsPerCup": 146,
+   "fdcId": 172430,
+   "fdcDescription": "Peanuts, all types, raw",
+   "usdaPortion": "1 cup = 146 g"
+  },
+  {
+   "slug": "sesame-seeds",
+   "name": "Sesame seeds",
+   "group": "Nuts, seeds & fruit",
+   "gramsPerCup": 144,
+   "fdcId": 170150,
+   "fdcDescription": "Seeds, sesame seeds, whole, dried",
+   "usdaPortion": "1 cup = 144 g"
+  },
+  {
+   "slug": "ground-flaxseed",
+   "name": "Ground flaxseed",
+   "group": "Nuts, seeds & fruit",
+   "gramsPerCup": 112,
+   "fdcId": 169414,
+   "fdcDescription": "Seeds, flaxseed",
+   "usdaPortion": "1 tbsp, ground = 7 g"
+  }
+ ]
+}
