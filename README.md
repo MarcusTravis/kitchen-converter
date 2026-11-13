@@ -31,3 +31,7 @@ If the site moves to a custom domain, change `SITE` in `scripts/generate-pages.m
 ## Data
 
 Ingredient weights are derived from USDA FoodData Central (SR Legacy), U.S. Department of Agriculture, Agricultural Research Service, released under CC0 1.0. Weights are approximate.
+
+## Analytics
+
+Cloudflare Web Analytics (cookieless) via the beacon snippet in every page, added by `scripts/generate-pages.mjs`. Pages-level auto-injection is off so views are not counted twice.
