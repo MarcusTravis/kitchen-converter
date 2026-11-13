@@ -2,7 +2,7 @@
 
 A fast, free, ad-free kitchen and ingredient converter: cups, spoons, grams and ounces; cups ↔ grams for common ingredients; oven temperatures (°F, °C, Gas Mark); and pan-size recipe scaling.
 
-Live: https://kitchen-converter-aey.pages.dev
+**Live site:** [https://kitchen-converter-aey.pages.dev](https://kitchen-converter-aey.pages.dev)
 
 Plain static HTML/CSS/vanilla JS. No framework, no build step: the repo root is deployed as-is by Cloudflare Pages on every push to `main`.
 
