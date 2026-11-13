@@ -1,8 +1,8 @@
-# Kitchen Converter
+# Cups & Quarts
 
-A fast, free, ad-free kitchen and ingredient converter: cups, spoons, grams and ounces; cups ↔ grams for common ingredients; oven temperatures (°F, °C, Gas Mark); and pan-size recipe scaling.
+A fast, free, ad-free cooking and ingredient converter: cups, spoons, grams and ounces; cups ↔ grams for common ingredients; oven temperatures (°F, °C, Gas Mark); and pan-size recipe scaling.
 
-**Live site:** [https://kitchen-converters.pages.dev](https://kitchen-converters.pages.dev)
+**Live site:** [https://cupsnquarts.pages.dev](https://cupsnquarts.pages.dev)
 
 Plain static HTML/CSS/vanilla JS. No framework, no build step: the repo root is deployed as-is by Cloudflare Pages on every push to `main`.
 

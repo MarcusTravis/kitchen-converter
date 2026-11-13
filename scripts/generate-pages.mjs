@@ -8,10 +8,11 @@ import { fileURLToPath } from 'node:url';
 const require = createRequire(import.meta.url);
 const KC = require('../assets/convert.js');
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const SITE = 'https://kitchen-converters.pages.dev';
-const NAME = 'Kitchen Converter';
+const SITE = 'https://cupsnquarts.pages.dev';
+const NAME = 'Cups & Quarts';
+const NAME_HTML = 'Cups &amp; Quarts';
 const KOFI = 'https://ko-fi.com/marcustravis';
-const ANALYTICS_TOKEN = '951903283b434a95b8a6f0e6740cbf02';
+const ANALYTICS_TOKEN = '8cf28ff62b3c44ab9d1123ee7b6f46c0';
 const DATA = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/ingredients.json'), 'utf8'));
 const ING = DATA.ingredients;
 const VERSION = '1';
@@ -38,7 +39,7 @@ function layout({ title, description, canonical, body, current = '', scripts = '
   <meta name="description" content="${esc(description)}">
   <link rel="canonical" href="${SITE}${canonical}">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="${NAME}">
+  <meta property="og:site_name" content="${NAME_HTML}">
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:url" content="${SITE}${canonical}">
@@ -50,7 +51,7 @@ function layout({ title, description, canonical, body, current = '', scripts = '
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="wrap">
-      <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2f6b4f"/><path d="M8 12h16l-1.6 11.2A3 3 0 0 1 19.4 26h-6.8a3 3 0 0 1-3-2.8z" fill="#fbf8f3"/><path d="M11 16h10M11.5 20h9" stroke="#2f6b4f" stroke-width="1.6" stroke-linecap="round"/></svg>${NAME}</a>
+      <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2f6b4f"/><path d="M8 12h16l-1.6 11.2A3 3 0 0 1 19.4 26h-6.8a3 3 0 0 1-3-2.8z" fill="#fbf8f3"/><path d="M11 16h10M11.5 20h9" stroke="#2f6b4f" stroke-width="1.6" stroke-linecap="round"/></svg>${NAME_HTML}</a>
       <nav class="site-nav" aria-label="Main">
         ${nav}
       </nav>
@@ -339,7 +340,7 @@ function panSide(p, label, preset) {
 function home() {
   const popular = ['all-purpose-flour', 'granulated-sugar', 'butter', 'brown-sugar', 'powdered-sugar', 'whole-milk', 'rolled-oats', 'cocoa-powder', 'honey', 'white-rice']
     .map(s => ING.find(x => x.slug === s)).map(d => `<li><a href="/convert/1-cup-${d.slug}-in-grams/">1 cup ${esc(d.name.toLowerCase())} in grams</a></li>`).join('\n          ');
-  const body = `    <h1>Kitchen &amp; ingredient converter</h1>
+  const body = `    <h1>Cups &amp; Quarts: cooking &amp; ingredient converter</h1>
     <p class="lede">Cups, spoons, grams and ounces, cups to grams for ${ING.length} ingredients, oven temperatures and pan sizes. Results update as you type.</p>
     <ul class="jump">
       <li><a href="#units">Units</a></li><li><a href="#ingredients">Cups ↔ grams</a></li><li><a href="#temperature">Temperature</a></li><li><a href="#pans">Pan sizes</a></li>
@@ -426,7 +427,7 @@ function home() {
     <script type="application/json" id="ingredient-data">${JSON.stringify({ ingredients: ING.map(({ slug, name, group, gramsPerCup, fdcId, usdaPortion }) => ({ slug, name, group, gramsPerCup, fdcId, usdaPortion })) })}</script>`;
   write('index.html', layout({
     title: `${NAME}: Cups to Grams, Oven Temps & Pan Sizes`,
-    description: `A fast, free, ad-free kitchen converter: cups, spoons, grams and ounces, cups to grams for ${ING.length} ingredients from USDA data, oven temperatures and pan sizes.`,
+    description: `Cups & Quarts is a fast, free, ad-free cooking converter: cups, spoons, grams and ounces, cups to grams for ${ING.length} ingredients from USDA data, oven temperatures and pan sizes.`,
     canonical: '/', current: '/', body,
     scripts: `  <script src="/assets/convert.js?v=${VERSION}"></script>\n  <script src="/assets/app.js?v=${VERSION}"></script>\n`,
     jsonld: { '@context': 'https://schema.org', '@type': 'WebApplication', name: NAME, url: SITE + '/', applicationCategory: 'UtilitiesApplication', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } }
@@ -453,7 +454,7 @@ ${Object.entries(byName).map(([n, list]) => `      <h3>${esc(n)}</h3>
       </ul>
     </section>
 ${sections}`;
-  write('convert/index.html', layout({ title: `Cups to Grams Charts for ${ING.length} Ingredients | ${NAME}`, description: `Every ingredient chart on ${NAME}: cups, tablespoons and teaspoons to grams, grams to cups, and kitchen unit and oven temperature conversions.`, canonical: '/convert/', current: '/convert/', body }));
+  write('convert/index.html', layout({ title: `Cups to Grams Charts for ${ING.length} Ingredients | ${NAME}`, description: `Every ingredient chart on ${NAME}: cups, tablespoons and teaspoons to grams, grams to cups, and cooking unit and oven temperature conversions.`, canonical: '/convert/', current: '/convert/', body }));
   urls.push('/convert/');
 }
 
@@ -462,7 +463,7 @@ function about() {
   const body = `    <h1>About &amp; sources</h1>
     <section class="card">
       <h2>What this is</h2>
-      <p>${NAME} is a small, fast tool for everyday cooking and baking math: switching between cups, spoons, grams and ounces, turning a cup of an ingredient into grams, converting oven temperatures and resizing recipes for a different pan. It is free, it has no ads, and it does not need an account.</p>
+      <p>${NAME_HTML} is a small, fast tool for everyday cooking and baking math: switching between cups, spoons, grams and ounces, turning a cup of an ingredient into grams, converting oven temperatures and resizing recipes for a different pan. It is free, it has no ads, and it does not need an account.</p>
       <p>The only analytics is Cloudflare Web Analytics, which counts page views without cookies and without tracking you across sites.</p>
     </section>
     <section class="card">

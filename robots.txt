@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kitchen-converters.pages.dev/sitemap.xml
+Sitemap: https://cupsnquarts.pages.dev/sitemap.xml

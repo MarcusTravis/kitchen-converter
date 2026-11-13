@@ -1,4 +1,4 @@
-/* Kitchen Converter core math. Works in the browser (window.KC) and in Node (module.exports). */
+/* Cups & Quarts core math. Works in the browser (window.KC) and in Node (module.exports). */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory();
   else root.KC = factory();
