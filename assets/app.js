@@ -128,6 +128,8 @@
     function showGas(fv) {
       var g = isFinite(fv) ? KC.gasMarkForF(fv) : null;
       gas.textContent = g ? 'Gas Mark ' + g.mark : (isFinite(fv) ? 'No gas mark (outside 225–500 °F)' : '–');
+      var fan = $('t-fan');
+      if (fan) fan.textContent = isFinite(fv) ? 'Fan / convection oven: about ' + Math.round(fv - 25) + ' °F / ' + Math.round(KC.fToC(fv) - 15) + ' °C' : '';
     }
     f.addEventListener('input', function () {
       var v = parseFloat(f.value);

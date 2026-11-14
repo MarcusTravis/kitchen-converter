@@ -15,7 +15,7 @@ const KOFI = 'https://ko-fi.com/marcustravis';
 const ANALYTICS_TOKEN = '8cf28ff62b3c44ab9d1123ee7b6f46c0';
 const DATA = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/ingredients.json'), 'utf8'));
 const ING = DATA.ingredients;
-const VERSION = '1';
+const VERSION = '2';
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const urls = [];
@@ -26,7 +26,7 @@ function write(rel, html) {
   fs.writeFileSync(file, html);
 }
 
-const NAV = [['/', 'Converter'], ['/#ingredients', 'Cups to grams'], ['/#temperature', 'Oven temps'], ['/#pans', 'Pan sizes'], ['/convert/', 'Charts'], ['/about/', 'About & sources']];
+const NAV = [['/', 'Converter'], ['/#ingredients', 'Cups to grams'], ['/oven-temperature/', 'Oven temps'], ['/pan-sizes/', 'Pan sizes'], ['/convert/', 'Charts'], ['/about/', 'About & sources']];
 
 function layout({ title, description, canonical, body, current = '', scripts = '', jsonld = null }) {
   const nav = NAV.map(([href, label]) => `<a href="${href}"${href === current ? ' aria-current="page"' : ''}>${label}</a>`).join('\n        ');
@@ -296,7 +296,7 @@ function factPages() {
     <section class="card">
       <p class="answer">${other} °${os}</p>
       <p>${t} °${s} is ${s === 'F' ? KC.formatNumber(KC.fToC(t)) : KC.formatNumber(KC.cToF(t))} °${os}, which rounds to ${other} °${os}.${gas ? ` On a gas oven that is about Gas Mark ${gas.mark}.` : ''} If you have a fan (convection) oven, recipes usually suggest setting it about 25 °F / 15 °C lower.</p>
-      <p><a class="btn cta" href="/#temperature">Open the temperature converter →</a></p>
+      <p><a class="btn cta" href="/oven-temperature/">Open the oven temperature chart and converter →</a></p>
     </section>`;
     const canonical = `/convert/${slug}/`;
     write(`convert/${slug}/index.html`, layout({ title: `${t}°${s} to °${os} (${other}°${os}) | ${NAME}`, description: `${t} degrees ${s === 'F' ? 'Fahrenheit' : 'Celsius'} is about ${other} degrees ${os === 'F' ? 'Fahrenheit' : 'Celsius'}${gas ? ` (Gas Mark ${gas.mark})` : ''}.`, canonical, body }));
@@ -344,6 +344,206 @@ function panSide(p, label, preset) {
             <div class="field" id="${p}-cups-wrap"><label for="${p}-cups">Capacity (cups)</label><input id="${p}-cups" type="number" inputmode="decimal" min="0" step="any" value="${def.cups}"></div>
           </div>
         </fieldset>`;
+}
+
+function tempWidget() {
+  return `      <div class="row three">
+        <div class="field amount"><label for="t-f">Fahrenheit (°F)</label><input id="t-f" type="number" inputmode="decimal" step="any" value="350"></div>
+        <div class="field amount"><label for="t-c">Celsius (°C)</label><input id="t-c" type="number" inputmode="decimal" step="any" value="177"></div>
+        <div class="field"><label for="t-gas-pick">Gas Mark</label><select id="t-gas-pick"><option value="">Pick a gas mark…</option></select></div>
+      </div>
+      <div class="result" aria-live="polite"><div class="big" id="t-gas">Gas Mark 4</div><div class="sub" id="t-fan"></div><div class="sub">Gas marks are approximate; ovens vary, so an oven thermometer is worth having.</div></div>`;
+}
+
+function panWidget() {
+  return `      <form id="pan-form" novalidate>
+        <div class="seg" role="radiogroup" aria-label="Measurement units">
+          <label><input type="radio" name="pan-units" value="in" checked><span>Inches</span></label>
+          <label><input type="radio" name="pan-units" value="cm"><span>Centimeters</span></label>
+        </div>
+        <div class="row two" style="margin-top:.75rem">
+          ${panSide('pa', 'Recipe’s pan', 'round-9')}
+          ${panSide('pb', 'Your pan', 'rect-9x13')}
+        </div>
+        <div class="field" style="margin-top:.75rem;max-width:22rem"><label for="p-basis">Compare by</label>
+          <select id="p-basis"><option value="area">Area (keep the same batter depth)</option><option value="volume">Volume (fill to the same level)</option></select></div>
+      </form>
+      <div class="result" aria-live="polite"><div class="big" id="p-result">Multiply the recipe by 1.84</div><div class="sub" id="p-sub"></div></div>`;
+}
+
+// ---------- standalone tool pages ----------
+const DIAL_NOTES = { 200: 'Keeping food warm, drying herbs', 225: 'Meringues, smoking-style low roasts', 250: 'Slow braises, drying fruit', 275: 'Slow-roasted meats, custards in a water bath', 300: 'Cheesecake, rich fruit cake', 325: 'Pound cake, roast turkey, quick breads', 350: 'Most cakes, cookies, brownies, casseroles', 375: 'Pies, muffins, cobblers', 400: 'Roast vegetables, puff pastry', 425: 'Pie crust start, roast potatoes, biscuits', 450: 'Bread, pizza at home, quick roasting', 475: 'Pizza on a stone, very hot roasting', 500: 'Broiler-style browning, pizza steel', 525: 'Pizza ovens and very hot home ovens', 550: 'Highest setting on most home ovens' };
+function ovenTemperaturePage() {
+  const r5 = c => Math.round(c / 5) * 5;
+  const rowsF = [];
+  for (let f = 200; f <= 550; f += 25) {
+    const c = KC.fToC(f), g = KC.gasMarkForF(f);
+    rowsF.push(`<tr><th scope="row" class="num">${f} °F</th><td class="num">${Math.round(c)} °C</td><td class="num">${r5(c)} °C</td><td class="num">${f - 25} °F / ${r5(c - 15)} °C</td><td class="num">${g ? g.mark : '–'}</td><td>${DIAL_NOTES[f] || ''}</td></tr>`);
+  }
+  const rowsC = [];
+  for (let c = 100; c <= 260; c += 10) {
+    const f = KC.cToF(c), g = KC.gasMarkForF(f);
+    rowsC.push(`<tr><th scope="row" class="num">${c} °C</th><td class="num">${Math.round(f)} °F</td><td class="num">${Math.round(f / 25) * 25} °F</td><td class="num">${c - 15} °C</td><td class="num">${g ? g.mark : '–'}</td></tr>`);
+  }
+  const gasRows = KC.GAS_MARKS.map(g => `<tr><th scope="row">Gas Mark ${g.mark}</th><td class="num">${g.f} °F</td><td class="num">${g.c} °C</td></tr>`).join('\n            ');
+  const quick = TEMPS.map(([t, s]) => `<li><a href="/convert/${t}-${s.toLowerCase()}-to-${s === 'F' ? 'c' : 'f'}/">${t} °${s} to °${s === 'F' ? 'C' : 'F'}</a></li>`).join('\n        ');
+  const body = `    <p class="crumbs"><a href="/">Converter</a> › Oven temperatures</p>
+    <h1>Oven temperature conversion: °F, °C, fan and gas mark</h1>
+    <p class="lede">Type a temperature in either box, or pick a gas mark. The charts below cover every common oven setting.</p>
+    <section id="temperature" class="card" aria-labelledby="temp-h">
+      <h2 id="temp-h">Temperature converter</h2>
+${tempWidget()}
+    </section>
+    <section class="card" aria-labelledby="f-h">
+      <h2 id="f-h">Fahrenheit to Celsius oven chart</h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col" class="num">°F</th><th scope="col" class="num">°C exact</th><th scope="col" class="num">°C on the dial</th><th scope="col" class="num">Fan / convection</th><th scope="col" class="num">Gas</th><th scope="col">Typical use</th></tr></thead>
+          <tbody>
+            ${rowsF.join('\n            ')}
+          </tbody>
+        </table>
+      </div>
+      <p class="hint">“On the dial” rounds to the nearest 5 °C, the way most metric ovens are marked. Fan settings follow the rule of thumb of about 25 °F / 15 °C lower.</p>
+    </section>
+    <section class="card" aria-labelledby="c-h">
+      <h2 id="c-h">Celsius to Fahrenheit oven chart</h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col" class="num">°C</th><th scope="col" class="num">°F exact</th><th scope="col" class="num">°F on the dial</th><th scope="col" class="num">Fan °C</th><th scope="col" class="num">Gas</th></tr></thead>
+          <tbody>
+            ${rowsC.join('\n            ')}
+          </tbody>
+        </table>
+      </div>
+      <p class="hint">“On the dial” rounds to the nearest 25 °F, which is how most US ovens step.</p>
+    </section>
+    <section class="card" aria-labelledby="g-h">
+      <h2 id="g-h">Gas mark chart</h2>
+      <table>
+        <thead><tr><th scope="col">Gas mark</th><th scope="col" class="num">°F</th><th scope="col" class="num">°C</th></tr></thead>
+        <tbody>
+            ${gasRows}
+        </tbody>
+      </table>
+    </section>
+    <section class="card">
+      <h2>How the math works</h2>
+      <p>To go from Fahrenheit to Celsius, subtract 32 and multiply by 5/9. To go back, multiply by 9/5 and add 32. So 350 °F is (350 − 32) × 5 ÷ 9 = 176.7 °C, which recipes usually round to 175 or 180 °C.</p>
+      <p>A fan (convection) oven blows hot air around the food, so it cooks faster at the same setting. If a recipe was written for a regular oven, start about 25 °F / 15 °C lower and check a few minutes early. If the recipe already says “fan”, use it as written.</p>
+      <p>Home ovens often run hot or cold by 15 °F or more. An inexpensive oven thermometer tells you what your oven really does.</p>
+    </section>
+    <section class="card">
+      <h2>Quick answers</h2>
+      <ul class="link-grid">
+        ${quick}
+      </ul>
+    </section>`;
+  write('oven-temperature/index.html', layout({
+    title: `Oven Temperature Conversion Chart: °F, °C, Fan & Gas Mark | ${NAME}`,
+    description: 'Convert oven temperatures between Fahrenheit, Celsius, fan/convection and gas mark, with full charts from 200 °F to 550 °F. Free and ad-free.',
+    canonical: '/oven-temperature/', current: '/oven-temperature/', body,
+    scripts: `  <script src="/assets/convert.js?v=${VERSION}"></script>\n  <script src="/assets/app.js?v=${VERSION}"></script>\n`
+  }));
+  urls.push('/oven-temperature/');
+}
+
+const PANS = [
+  ['8-inch round', { shape: 'round', diameter: 8, depth: 2 }, '8 × 2 in', '20 × 5 cm'],
+  ['9-inch round', { shape: 'round', diameter: 9, depth: 2 }, '9 × 2 in', '23 × 5 cm'],
+  ['10-inch round', { shape: 'round', diameter: 10, depth: 2 }, '10 × 2 in', '25 × 5 cm'],
+  ['9-inch pie plate', { shape: 'round', diameter: 9, depth: 1.25 }, '9 × 1¼ in', '23 × 3 cm'],
+  ['8 × 8 square', { shape: 'square', side: 8, depth: 2 }, '8 × 8 × 2 in', '20 × 20 × 5 cm'],
+  ['9 × 9 square', { shape: 'square', side: 9, depth: 2 }, '9 × 9 × 2 in', '23 × 23 × 5 cm'],
+  ['11 × 7 baking dish', { shape: 'rect', length: 11, width: 7, depth: 2 }, '11 × 7 × 2 in', '28 × 18 × 5 cm'],
+  ['9 × 13 pan', { shape: 'rect', length: 13, width: 9, depth: 2 }, '13 × 9 × 2 in', '33 × 23 × 5 cm'],
+  ['Half sheet', { shape: 'rect', length: 18, width: 13, depth: 1 }, '18 × 13 × 1 in', '46 × 33 × 2.5 cm'],
+  ['Jelly roll', { shape: 'rect', length: 15, width: 10, depth: 1 }, '15 × 10 × 1 in', '38 × 25 × 2.5 cm'],
+  ['8½ × 4½ loaf', { shape: 'loaf', length: 8.5, width: 4.5, depth: 2.75 }, '8½ × 4½ × 2¾ in', '22 × 11 × 7 cm'],
+  ['9 × 5 loaf', { shape: 'loaf', length: 9, width: 5, depth: 3 }, '9 × 5 × 3 in', '23 × 13 × 7.5 cm']
+];
+function panSizesPage() {
+  const fmt = n => KC.formatNumber(n);
+  const geo = PANS.map(([name, p, inch, cm]) => ({ name, p, inch, cm, g: KC.panGeometry(p) }));
+  const rows = geo.map(x => `<tr><th scope="row">${x.name}</th><td>${x.inch}</td><td>${x.cm}</td><td class="num">${Math.round(x.g.area)} sq in</td><td class="num">${Math.round(x.g.area * 6.4516)} cm²</td><td class="num">${fmt(x.g.cups)} cups</td></tr>`).join('\n            ');
+  // Substitutions: one or two of another pan whose total area is within 10% (cake-style pans only, similar depth).
+  const cakePans = geo.filter(x => x.p.depth >= 2 && x.p.shape !== 'loaf');
+  const subs = cakePans.map(x => {
+    const opts = [];
+    for (const y of cakePans) {
+      if (y === x) continue;
+      for (const k of [1, 2]) {
+        const ratio = (y.g.area * k) / x.g.area;
+        if (ratio >= 0.9 && ratio <= 1.1) opts.push(`${k === 2 ? 'two ' : ''}${y.name}${k === 2 ? ' pans' : ''} (${ratio >= 1 ? '+' : '−'}${Math.round(Math.abs(ratio - 1) * 100)}% area)`);
+      }
+    }
+    return `<tr><th scope="row">${x.name}</th><td class="num">${Math.round(x.g.area)} sq in</td><td>${opts.length ? opts.join('; ') : 'No close match; scale the recipe with the converter above'}</td></tr>`;
+  }).join('\n            ');
+  const matrixPans = geo.filter(x => ['8-inch round', '9-inch round', '10-inch round', '8 × 8 square', '9 × 9 square', '11 × 7 baking dish', '9 × 13 pan'].includes(x.name));
+  const matrix = matrixPans.map(a => `<tr><th scope="row">${a.name}</th>${matrixPans.map(b => `<td class="num">${a === b ? '1' : '×' + fmt(b.g.area / a.g.area)}</td>`).join('')}</tr>`).join('\n            ');
+  const body = `    <p class="crumbs"><a href="/">Converter</a> › Pan sizes</p>
+    <h1>Baking pan sizes: area, volume and substitutions</h1>
+    <p class="lede">Swap pans with confidence. Every number here is worked out from the pan’s dimensions: area for keeping batter at the same depth, volume for how much it holds.</p>
+    <section id="pans" class="card" aria-labelledby="pans-h">
+      <h2 id="pans-h">Pan size converter</h2>
+      <p>Enter the pan your recipe was written for and the pan you have to see how much to scale the recipe.</p>
+${panWidget()}
+      <p class="hint">Bundt and tube pans are compared by capacity. To find one, fill the pan with water a cup at a time.</p>
+    </section>
+    <section class="card" aria-labelledby="chart-h">
+      <h2 id="chart-h">Common pan sizes</h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Pan</th><th scope="col">Inches</th><th scope="col">Metric (approx.)</th><th scope="col" class="num">Area</th><th scope="col" class="num">Area</th><th scope="col" class="num">Holds to the brim</th></tr></thead>
+          <tbody>
+            ${rows}
+          </tbody>
+        </table>
+      </div>
+      <p class="hint">Areas use straight sides; real pans with sloped sides or rounded corners hold a little less. Batter usually fills a pan about half to two-thirds full.</p>
+    </section>
+    <section class="card" aria-labelledby="subs-h">
+      <h2 id="subs-h">Pan substitutions</h2>
+      <p>These swaps keep the batter within about 10% of the same depth, so the original recipe amount works without scaling.</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Recipe calls for</th><th scope="col" class="num">Area</th><th scope="col">Close matches</th></tr></thead>
+          <tbody>
+            ${subs}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="card" aria-labelledby="mx-h">
+      <h2 id="mx-h">Recipe multiplier chart</h2>
+      <p>Find the recipe’s pan in the left column and your pan along the top. Multiply every ingredient by the number where they meet.</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">From \\ To</th>${matrixPans.map(b => `<th scope="col" class="num">${b.name}</th>`).join('')}</tr></thead>
+          <tbody>
+            ${matrix}
+          </tbody>
+        </table>
+      </div>
+      <p class="hint">Based on area at the same depth. For example, a 9-inch round recipe scaled up for a 9 × 13 pan needs about ×${fmt(geo[7].g.area / geo[1].g.area)}.</p>
+    </section>
+    <section class="card">
+      <h2>Tips for switching pans</h2>
+      <ul>
+        <li><strong>Same area, same time.</strong> When the batter sits at the same depth, the bake time stays close to the recipe’s.</li>
+        <li><strong>Deeper batter bakes longer.</strong> In a smaller pan, lower the oven by about 25 °F and check later than the recipe says. In a larger, shallower pan, start checking 5 to 10 minutes early.</li>
+        <li><strong>Glass and dark metal run hotter.</strong> Many bakers drop the oven 25 °F for glass or dark nonstick pans.</li>
+        <li><strong>Bundt and tube pans</strong> are best matched by how many cups of water they hold, not by diameter.</li>
+        <li><strong>Doneness beats the clock.</strong> A toothpick in the center should come out clean or with a few moist crumbs.</li>
+      </ul>
+    </section>`;
+  write('pan-sizes/index.html', layout({
+    title: `Baking Pan Size Chart & Substitutions | ${NAME}`,
+    description: 'Baking pan sizes with area and volume in inches and centimeters, pan substitutions and a recipe multiplier chart, plus a pan size converter. Free and ad-free.',
+    canonical: '/pan-sizes/', current: '/pan-sizes/', body,
+    scripts: `  <script src="/assets/convert.js?v=${VERSION}"></script>\n  <script src="/assets/app.js?v=${VERSION}"></script>\n`
+  }));
+  urls.push('/pan-sizes/');
 }
 
 function home() {
@@ -403,12 +603,7 @@ function home() {
 
     <section id="temperature" class="card" aria-labelledby="temp-h">
       <h2 id="temp-h">Oven temperature</h2>
-      <div class="row three">
-        <div class="field amount"><label for="t-f">Fahrenheit (°F)</label><input id="t-f" type="number" inputmode="decimal" step="any" value="350"></div>
-        <div class="field amount"><label for="t-c">Celsius (°C)</label><input id="t-c" type="number" inputmode="decimal" step="any" value="177"></div>
-        <div class="field"><label for="t-gas-pick">Gas Mark</label><select id="t-gas-pick"><option value="">Pick a gas mark…</option></select></div>
-      </div>
-      <div class="result" aria-live="polite"><div class="big" id="t-gas">Gas Mark 4</div><div class="sub">Gas marks are approximate; ovens vary, so an oven thermometer is worth having.</div></div>
+${tempWidget()}
       <h3>Oven temperature guide</h3>
       <div class="table-scroll">
         <table>
@@ -419,25 +614,15 @@ function home() {
         </table>
       </div>
       <p class="hint">Celsius rounded to the nearest 5. For a fan or convection oven, try about 25 °F / 15 °C lower.</p>
+      <p><a href="/oven-temperature/">Full oven temperature chart: °F, °C, fan and gas mark →</a></p>
     </section>
 
     <section id="pans" class="card" aria-labelledby="pans-h">
       <h2 id="pans-h">Pan size converter</h2>
       <p>Baking a recipe in a different pan? Enter both pans to see how much to scale the recipe.</p>
-      <form id="pan-form" novalidate>
-        <div class="seg" role="radiogroup" aria-label="Measurement units">
-          <label><input type="radio" name="pan-units" value="in" checked><span>Inches</span></label>
-          <label><input type="radio" name="pan-units" value="cm"><span>Centimeters</span></label>
-        </div>
-        <div class="row two" style="margin-top:.75rem">
-          ${panSide('pa', 'Recipe’s pan', 'round-9')}
-          ${panSide('pb', 'Your pan', 'rect-9x13')}
-        </div>
-        <div class="field" style="margin-top:.75rem;max-width:22rem"><label for="p-basis">Compare by</label>
-          <select id="p-basis"><option value="area">Area (keep the same batter depth)</option><option value="volume">Volume (fill to the same level)</option></select></div>
-      </form>
-      <div class="result" aria-live="polite"><div class="big" id="p-result">Multiply the recipe by 1.84</div><div class="sub" id="p-sub"></div></div>
+${panWidget()}
       <p class="hint">Bundt and tube pans are compared by capacity. To find one, fill the pan with water a cup at a time.</p>
+      <p><a href="/pan-sizes/">Pan size chart and substitutions →</a></p>
     </section>
     <script type="application/json" id="ingredient-data">${JSON.stringify({ ingredients: ING.map(({ slug, name, group, gramsPerCup, fdcId, usdaPortion }) => ({ slug, name, group, gramsPerCup, fdcId, usdaPortion })) })}</script>`;
   write('index.html', layout({
@@ -516,6 +701,8 @@ function notFound() {
 // ---------- run ----------
 fs.rmSync(path.join(ROOT, 'convert'), { recursive: true, force: true });
 home();
+ovenTemperaturePage();
+panSizesPage();
 for (const d of ING) {
   for (const [n, u] of (SMALL.has(d.slug) ? SMALL_AMOUNTS : VOL_AMOUNTS)) volumePage(d, n, u);
   if (!SMALL.has(d.slug)) for (const g of GRAM_AMOUNTS) gramPage(d, g);
