@@ -14,7 +14,8 @@ Plain static HTML/CSS/vanilla JS. No framework, no build step: the repo root is 
 - `data/ingredients.json`: ingredient densities (grams per US cup), each with its USDA FoodData Central ID and the portion it came from.
 - `scripts/ingredient-list.json`: the ingredients and which USDA portion to use.
 - `scripts/build-data.mjs`: rebuilds `data/ingredients.json` from the USDA SR Legacy CSV download.
-- `scripts/generate-pages.mjs`: generates `index.html`, `about/`, `convert/` (long-tail chart pages), `404.html`, `sitemap.xml` and `robots.txt`. Generated files are committed; don't hand-edit them.
+- `scripts/generate-pages.mjs`: generates `index.html`, `oven-temperature/`, `pan-sizes/`, `about/`, `convert/` (long-tail chart pages), `404.html`, `sitemap.xml` and `robots.txt`. Generated files are committed; don't hand-edit them.
+- `scripts/render-og.cjs`: renders the share preview image `assets/og-image.png` (1200×630) with a local Chrome.
 - `tests/conversions.test.mjs`: core conversion tests.
 
 ## Common tasks
@@ -30,7 +31,11 @@ If the site moves to a custom domain, change `SITE` in `scripts/generate-pages.m
 
 ## Data
 
-Ingredient weights are derived from USDA FoodData Central (SR Legacy), U.S. Department of Agriculture, Agricultural Research Service, released under CC0 1.0. Weights are approximate.
+Ingredient weights are derived from USDA FoodData Central (SR Legacy), U.S. Department of Agriculture, Agricultural Research Service, released under CC0 1.0 (public domain dedication). Each entry in `data/ingredients.json` keeps its FDC ID and the USDA portion it came from. Weights are approximate.
+
+## License
+
+The code is released under the [MIT License](LICENSE), copyright Marcus Travis. The ingredient data is not covered by that license: it derives from USDA FoodData Central, which is public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
 
 ## Analytics
 
