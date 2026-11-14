@@ -52,6 +52,7 @@ function layout({ title, description, canonical, body, current = '', scripts = '
   <meta name="twitter:description" content="${esc(description)}">
   <meta name="twitter:image" content="${SITE}/assets/og-image.png">
   <meta name="theme-color" content="#2f6b4f">
+  <meta name="google-site-verification" content="DBsd4dRo6CszvxQNH2xXlYTnwq2I4v30uIsV_nwwEc8" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/site.css?v=${VERSION}">${jsonld ? `\n  <script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : ''}
 </head>
