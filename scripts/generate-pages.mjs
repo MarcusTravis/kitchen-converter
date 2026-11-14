@@ -43,6 +43,14 @@ function layout({ title, description, canonical, body, current = '', scripts = '
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:url" content="${SITE}${canonical}">
+  <meta property="og:image" content="${SITE}/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Cups &amp; Quarts: cups to grams, oven temps and pan sizes in one fast kitchen converter. Free, no ads.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${esc(title)}">
+  <meta name="twitter:description" content="${esc(description)}">
+  <meta name="twitter:image" content="${SITE}/assets/og-image.png">
   <meta name="theme-color" content="#2f6b4f">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/site.css?v=${VERSION}">${jsonld ? `\n  <script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : ''}
