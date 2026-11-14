@@ -70,4 +70,18 @@ t('ingredient data is sane', () => {
   assert.equal(d.find(i => i.slug === 'all-purpose-flour').gramsPerCup, 125);
   assert.equal(d.find(i => i.slug === 'granulated-sugar').gramsPerCup, 200);
 });
+t('Thanksgiving ingredients from USDA', () => {
+  const d = JSON.parse(fs.readFileSync(new URL('../data/ingredients.json', import.meta.url))).ingredients;
+  const pumpkin = d.find(i => i.slug === 'pumpkin-puree');
+  assert.ok(pumpkin, 'pumpkin purée present');
+  assert.equal(pumpkin.fdcId, 168450);
+  assert.equal(pumpkin.gramsPerCup, 245);
+  // A 15 oz can (425 g) of pumpkin is about 1 3/4 cups.
+  near(KC.convert(425, 'g', 'cup', pumpkin.gramsPerCup), 1.735, 0.01);
+  near(KC.convert(0.5, 'cup', 'g', pumpkin.gramsPerCup), 122.5);
+  assert.equal(d.find(i => i.slug === 'evaporated-milk').gramsPerCup, 252);
+  assert.equal(d.find(i => i.slug === 'dried-cranberries').gramsPerCup, 160);
+  for (const s of ['fresh-cranberries', 'canned-sweet-potato', 'pumpkin-pie-spice', 'pecan-halves']) assert.ok(d.find(i => i.slug === s), s);
+  assert.ok(fs.existsSync(new URL('../convert/1-cup-pumpkin-puree-in-grams/index.html', import.meta.url)), 'pumpkin chart page generated');
+});
 console.log(`\n${n} test groups passed`);

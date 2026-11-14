@@ -97,7 +97,7 @@ function cupsText(c) {
   return f.exact ? `${f.text} cup${c > 1 ? 's' : ''}` : `about ${f.text} cup${c > 1.05 ? 's' : ''}`;
 }
 
-const SMALL = new Set(['baking-soda', 'baking-powder', 'ground-cinnamon', 'vanilla-extract', 'table-salt']);
+const SMALL = new Set(['baking-soda', 'baking-powder', 'ground-cinnamon', 'vanilla-extract', 'table-salt', 'pumpkin-pie-spice', 'ground-ginger', 'ground-nutmeg', 'ground-cloves', 'ground-allspice', 'ground-sage', 'poultry-seasoning']);
 const VOL_AMOUNTS = [[0.25, 'cup'], [1 / 3, 'cup'], [0.5, 'cup'], [2 / 3, 'cup'], [0.75, 'cup'], [1, 'cup'], [2, 'cup'], [1, 'tbsp']];
 const SMALL_AMOUNTS = [[0.25, 'tsp'], [0.5, 'tsp'], [1, 'tsp'], [1, 'tbsp']];
 const GRAM_AMOUNTS = [100, 250, 500];
@@ -109,6 +109,8 @@ const TIPS = {
   'Liquids & dairy': 'Liquids are the easiest thing to measure by volume, so cups and a scale will agree closely. Dairy weighs a little more or less than water depending on its fat, sugar and air content.',
   'Grains & legumes': 'These figures are for dry, uncooked grains and legumes. Once cooked they soak up water and a cup weighs very differently.',
   'Baking extras': 'Small amounts like these are hard to read on a regular kitchen scale. A pocket scale that reads to 0.1 g helps, or just use level measuring spoons.',
+  'Fruits & vegetables': 'Purées and sauces settle into the cup with little air, so they measure fairly consistently. Scrape the cup out with a spatula, and for whole fruit like fresh cranberries, a heaping or shaken-down cup can change the weight noticeably.',
+  'Bread & stuffing': 'Dry crumbs and cubes are mostly air, so a cup weighs very little and pressing down changes the amount a lot. Fill the cup loosely unless the recipe says packed, or go by weight from the bag.',
   'Nuts, seeds & fruit': 'Whole, chopped and sliced pieces leave different amounts of air in the cup, so the same nut can weigh quite differently depending on the cut. Pick the closest match.'
 };
 const NOTES = {
@@ -119,6 +121,13 @@ const NOTES = {
   'eggs': 'One large egg out of the shell is roughly 50 g, so a cup holds about 5 large eggs.',
   'water': '1 mL of water weighs very close to 1 g, which is why a cup of water is about 237 g.',
   'table-salt': 'This is fine table salt. Kosher and flaky salts have bigger crystals and weigh much less per spoon, so do not swap them one for one.',
+  'pumpkin-puree': 'This is plain canned pumpkin, not pumpkin pie filling (which already has sugar and spice in it). A standard 15-ounce can holds about 425 g, which is roughly 1¾ cups.',
+  'pumpkin-pie-filling': 'Pie filling is pumpkin with sugar and spices already added. If your recipe calls for pumpkin purée, use plain canned pumpkin instead.',
+  'evaporated-milk': 'Evaporated milk is milk with about 60% of the water cooked off. It is not the same as sweetened condensed milk, which is much thicker and very sweet. A 12-ounce can holds 1½ cups.',
+  'fat-free-evaporated-milk': 'A 12-ounce can holds 1½ cups. Fat-free evaporated milk can stand in for regular evaporated milk in most pies and casseroles.',
+  'canned-yams': 'In US grocery stores, canned “yams” are almost always orange sweet potatoes packed in syrup. This figure is for the drained pieces.',
+  'dried-cranberries': 'USDA lists a quarter cup of sweetened dried cranberries at 40 g, so a full cup is about 160 g.',
+  'croutons': 'Use this for dry, unseasoned bread cubes like the ones in a bag of stuffing cubes. Seasoned cubes weigh a little more per cup.',
   'heavy-cream': 'This is liquid cream before whipping. Whipped cream is mostly air and weighs about half as much per cup.'
 };
 
@@ -338,8 +347,10 @@ function panSide(p, label, preset) {
 }
 
 function home() {
-  const popular = ['all-purpose-flour', 'granulated-sugar', 'butter', 'brown-sugar', 'powdered-sugar', 'whole-milk', 'rolled-oats', 'cocoa-powder', 'honey', 'white-rice']
+  const popular = ['all-purpose-flour', 'granulated-sugar', 'butter', 'brown-sugar', 'powdered-sugar', 'pumpkin-puree', 'whole-milk', 'rolled-oats', 'cocoa-powder', 'honey']
     .map(s => ING.find(x => x.slug === s)).map(d => `<li><a href="/convert/1-cup-${d.slug}-in-grams/">1 cup ${esc(d.name.toLowerCase())} in grams</a></li>`).join('\n          ');
+  const thanksgiving = [['pumpkin-puree', 'cup'], ['evaporated-milk', 'cup'], ['canned-sweet-potato', 'cup'], ['fresh-cranberries', 'cup'], ['dried-cranberries', 'cup'], ['cranberry-sauce', 'cup'], ['pecan-halves', 'cup'], ['croutons', 'cup'], ['maple-syrup', 'cup'], ['pumpkin-pie-spice', 'tbsp']]
+    .map(([s, u]) => [ING.find(x => x.slug === s), u]).map(([d, u]) => `<li><a href="/convert/1-${u === 'cup' ? 'cup' : 'tablespoon'}-${d.slug}-in-grams/">1 ${u === 'cup' ? 'cup' : 'tbsp'} ${esc(d.name.toLowerCase())} in grams</a></li>`).join('\n          ');
   const body = `    <h1>Cups &amp; Quarts: cooking &amp; ingredient converter</h1>
     <p class="lede">Cups, spoons, grams and ounces, cups to grams for ${ING.length} ingredients, oven temperatures and pan sizes. Results update as you type.</p>
     <ul class="jump">
@@ -382,6 +393,10 @@ function home() {
       <h3>Popular charts</h3>
       <ul class="link-grid">
           ${popular}
+      </ul>
+      <h3>Thanksgiving baking</h3>
+      <ul class="link-grid">
+          ${thanksgiving}
       </ul>
       <p><a href="/convert/">All ingredient charts →</a></p>
     </section>
